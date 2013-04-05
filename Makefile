@@ -1,5 +1,5 @@
 all:
-	gcc -o battery_monitor battery_monitor.c -DLOG=\"${HOME}/.battery_monitor\" -DINTERVAL=60000000
+	gcc -o battery_monitor battery_monitor.c -DLOG=\"${HOME}/.battery_monitor\" -DINTERVAL=100000000
 
 clean:
 	rm battery_monitor
