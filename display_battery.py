@@ -38,10 +38,11 @@ class Main(QtGui.QWidget):
         py = size.height()/4800000.0
         for y in xrange(0, 4800000, 480000):
             qp.drawLine(0, y*py, size.width(), y*py)
+        for x in xrange(int(self.max_time - self.min_time), 0, -3600):
+            qp.drawLine(x*px, 0, x*px, self.height())
         for p in self.points:
             x = (p[0] - self.min_time) * px
             y = size.height() - p[1] * py
-            print x,y
             qp.drawEllipse(x-5, y-5, 10, 10)
         qp.end()
 
