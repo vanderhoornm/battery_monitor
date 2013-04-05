@@ -32,7 +32,6 @@ class Main(QtGui.QWidget):
         qp.begin(self)
         pen = QtGui.QPen(QtCore.Qt.black, 1)
         qp.setPen(pen)
-        qp.setBrush(QtCore.Qt.red)
         size = self.size()
         px = size.width()/(self.max_time - self.min_time)
         py = size.height()/4800000.0
@@ -40,9 +39,15 @@ class Main(QtGui.QWidget):
             qp.drawLine(0, y*py, size.width(), y*py)
         for x in xrange(int(self.max_time - self.min_time), 0, -3600):
             qp.drawLine(x*px, 0, x*px, self.height())
+        last_y = 4800000
         for p in self.points:
             x = (p[0] - self.min_time) * px
             y = size.height() - p[1] * py
+            if y-last_y >= 0:
+                qp.setBrush(QtCore.Qt.red)
+            else:
+                qp.setBrush(QtCore.Qt.green)
+            last_y = y
             qp.drawEllipse(x-5, y-5, 10, 10)
         qp.end()
 
